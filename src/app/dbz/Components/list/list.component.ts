@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Character } from '../../Interfaces/character.interface';
+import { consumerMarkDirty } from '@angular/core/primitives/signals';
 
 
 @Component({
@@ -20,11 +21,14 @@ export class ListComponent{
   }];
 
   @Output()
-  public onDelete: EventEmitter<number> = new EventEmitter();
+  public onDelete: EventEmitter<string> = new EventEmitter();
 
-  onDeleteCharacter( index:number) :void {
+  onDeleteCharacter( id?:string) :void {
   // emitir id del personsaje
- this.onDelete.emit(index);
+
+
+  if( !id) return;
+ this.onDelete.emit(id);
 
         }
 
